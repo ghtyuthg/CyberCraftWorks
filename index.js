@@ -1,18 +1,12 @@
-const binarySearchRecursive = (
-  arr,
-  target,
-  left = 0,
-  right = arr.length - 1,
-) => {
-  if (left > right) {
-    return -1;
+function isValidParentheses(s) {
+  const stack = [];
+  const map = { "(": ")", "[": "]", "{": "}" };
+  for (const char of s) {
+    if (char in map) stack.push(char);
+    else {
+      const top = stack.pop();
+      if (map[top] !== char) return false;
+    }
   }
-  const mid = Math.floor((left + right) / 2);
-  if (arr[mid] === target) {
-    return mid;
-  } else if (arr[mid] < target) {
-    return binarySearchRecursive(arr, target, mid + 1, right);
-  } else {
-    return binarySearchRecursive(arr, target, left, mid - 1);
-  }
-};
+  return stack.length === 0;
+}
