@@ -1,10 +1,17 @@
-function rob(nums) {
-  let prevMax = 0;
-  let currMax = 0;
-  for (const num of nums) {
-    const temp = currMax;
-    currMax = Math.max(prevMax + num, currMax);
-    prevMax = temp;
-  }
-  return currMax;
-}
+// Fund Alice and sponsor accounts
+await aptos.fundAccount({
+  accountAddress: aliceAddress,
+  amount: ALICE_INITIAL_BALANCE,
+});
+await aptos.fundAccount({
+  accountAddress: sponsorAddress,
+  amount: SPONSOR_INITIAL_BALANCE,
+});
+
+// Show account balances
+const aliceBalanceBefore = await aptos.getAccountCoinsData({
+  accountAddress: aliceAddress,
+});
+const sponsorBalanceBefore = await aptos.getAccountCoinsData({
+  accountAddress: sponsorAddress,
+});
