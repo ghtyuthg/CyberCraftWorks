@@ -1,17 +1,11 @@
-// Fund Alice and sponsor accounts
-await aptos.fundAccount({
-  accountAddress: aliceAddress,
-  amount: ALICE_INITIAL_BALANCE,
-});
-await aptos.fundAccount({
-  accountAddress: sponsorAddress,
-  amount: SPONSOR_INITIAL_BALANCE,
-});
-
-// Show account balances
-const aliceBalanceBefore = await aptos.getAccountCoinsData({
-  accountAddress: aliceAddress,
-});
-const sponsorBalanceBefore = await aptos.getAccountCoinsData({
-  accountAddress: sponsorAddress,
-});
+function generate(numRows) {
+  const triangle = [];
+  for (let i = 0; i < numRows; i++) {
+    const row = new Array(i + 1).fill(1);
+    for (let j = 1; j < row.length - 1; j++) {
+      row[j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+    }
+    triangle.push(row);
+  }
+  return triangle;
+}
